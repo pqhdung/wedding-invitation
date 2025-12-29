@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Thiệp mời cưới | Phương Phương & Hoàng Dũng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap 4.5.2 -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+   <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet"> -->
+
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <div id="pageLoading">
+    <div class="loading-content">
+      <div class="spinner"></div>
+      <p>Đang mở thiệp...</p>
+    </div>
+  </div>
+
+  <div id="loadingOverlay">
+    <div class="loading-box" data-aos="zoom-in">
+      <div class="flower-loader"></div>
+      <p>Đang gửi lời chúc của bạn…</p>
+    </div>
+  </div>
+
+  <div id="opening">
+    <img src="assets/floral-top.png" class="opening-flower top" alt="">
+    <img src="assets/floral-bottom.png" class="opening-flower bottom" alt="">
+    <div class="opening-content">
+      <p class="opening-text">Wedding Invitation</p>
+      <h1>Phương Phương & Hoàng Dũng</h1>
+      <button id="openBtn">Mở thiệp</button>
+    </div>
+  </div>
+
+  <div class="card-wrapper">
+    <!-- PAGE 1 -->
+    <section class="hero envelope">
+      <div class="container" data-aos="fade-up">
+        <h1>Wedding Invitation</h1>
+        <p class="mt-3">Phương Phương & Hoàng Dũng</p>
+        <div class="divider"></div>
+
+        <p>Vui lòng nhập tên hoặc số điện thoại của bạn</p>
+
+        <div class="row justify-content-center">
+          <div class="col-md-6" id="searchBox">
+            <input id="guestInput" type="text" class="form-control text-center" placeholder="Tên hoặc số điện thoại" />
+            <button onclick="checkGuest()" class="btn btn-dark btn-block mt-3">Mở thiệp mời</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 2 -->
+    <section id="invite" class="section invitation" style="display:none">
+      <div class="container">
+        <div class="invite-box text-center" data-aos="fade-up">
+
+          <p class="text-uppercase small" data-aos="fade-up">Trân trọng kính mời</p>
+
+          <!-- TÊN KHÁCH -->
+          <h3 id="guestDisplay" class="mt-2 mb-4" style="font-weight:600" data-aos="fade-up" data-aos-delay="200"></h3>
+
+          <!-- TÊN CÔ DÂU CHÚ RỂ -->
+          <h1 class="couple-name" data-aos="fade-up" data-aos-delay="300">Phương Phương</h1>
+          <div class="ampersand" data-aos="fade-up" data-aos-delay="350">&</div>
+          <h1 class="couple-name" ata-aos="fade-up" data-aos-delay="400">Hoàng Dũng</h1>
+
+          <div class="divider" data-aos="fade-up" data-aos-delay="500"></div>
+
+          <p class="mt-4" data-aos="fade-up" data-aos-delay="600">Hôn lễ được cử hành vào</p>
+          <h4 class="date" data-aos="fade-up" data-aos-delay="700">17:00 · Thứ Bảy · 24.01.2026</h4>
+
+          <p class="location mt-4">
+            <strong>SUNRISE PALACE</strong><br />
+            283 Ngô Gia Tự, Phan Rang, Khánh Hòa
+          </p>
+
+          <!-- ẢNH CƯỚI CHÍNH -->
+          <!-- <div class="main-photo mt-5" data-aos="zoom-in" data-aos-delay="900">
+            <img src="assets/images/couple.jpg" alt="Wedding Photo" />
+          </div> -->
+
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section gallery-album">
+      <div class="container">
+
+        <!-- Ảnh hero -->
+        <div class="album-row" data-aos="fade-up">
+          <img src="assets/images/landscape-1.jpg" class="album-full album-img">
+        </div>
+
+        <!-- Ảnh đôi lệch -->
+        <div class="album-row split">
+          <img src="assets/images/portrait-1.jpg" class="album-left album-img" data-aos="fade-up">
+          <img src="assets/images/portrait-2.jpg" class="album-right album-img" data-aos="fade-up" data-aos-delay="150">
+        </div>
+
+        <div class="wedding-quote" data-aos="fade-up">
+          <p>
+            “Tình yêu không phải là nhìn nhau,<br>
+            mà là cùng nhau nhìn về một hướng.”
+          </p>
+          <span>— Antoine de Saint-Exupéry —</span>
+        </div>
+
+        <!-- Ảnh ngang nhỏ -->
+        <div class="album-row" data-aos="fade-up">
+          <img src="assets/images/landscape-2.jpg" class="album-wide album-img">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- RSVP FORM -->
+    <section class="section rsvp" id="rsvp" style="display:none">
+      <div class="container">
+        <div class="invite-box text-center" data-aos="fade-up">
+
+          <h4>Gửi lời nhắn</h4>
+
+          <form id="rsvpForm">
+
+            <input type="hidden" name="name" id="guestName" />
+
+            <div class="form-group">
+              <label>Tham dự</label>
+              <select name="attending" class="form-control">
+                <option value="Có">Sẽ tham dự</option>
+                <option value="Không">Xin phép vắng mặt</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Số người</label>
+              <input type="number" name="guests" class="form-control" min="1" value="1" />
+            </div>
+
+            <div class="form-group">
+              <label>Lời chúc</label>
+              <textarea name="message" class="form-control"
+                placeholder="Viết vài dòng chúc mừng..."></textarea>
+            </div>
+
+            <button type="submit">Ký tên & Gửi</button>
+
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section map-section" id="map" data-aos="fade-up">
+      <h2>Địa Điểm Tổ Chức</h2>
+
+      <p class="map-title">
+        <strong>Nhà hàng tiệc cưới Sunrise Palace</strong><br>
+        283 Ngô Gia Tự, Phường Phan Rang, Khánh Hòa
+      </p>
+
+      <a
+        href="https://www.google.com/maps/place/Nh%C3%A0+h%C3%A0ng+ti%E1%BB%87c+c%C6%B0%E1%BB%9Bi+Sunrise+Palace+Ninh+Thu%E1%BA%ADn/@11.5624682,108.9942267,18.25z/data=!4m14!1m7!3m6!1s0x3170d18f9cb5aa2f:0x122e6faeb082ae38!2zTmjDoCBow6BuZyB0aeG7h2MgY8aw4bubaSBTdW5yaXNlIFBhbGFjZSBOaW5oIFRodeG6rW4!8m2!3d11.5626854!4d108.9951224!16s%2Fg%2F11mvx5fj0r!3m5!1s0x3170d18f9cb5aa2f:0x122e6faeb082ae38!8m2!3d11.5626854!4d108.9951224!16s%2Fg%2F11mvx5fj0r?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D"
+        target="_blank"
+        class="map-link"
+      >
+        <img
+          src="assets/map.png"
+          alt="Bản đồ địa điểm"
+          class="map-image"
+        />
+        <div class="map-overlay">
+          <span>Xem bản đồ</span>
+        </div>
+      </a>
+    </section>
+</div>
+<footer>
+  © 2026 Phương Phương & Hoàng Dũng
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+  function getParam(name) {
+    return new URLSearchParams(window.location.search).get(name);
+  }
+
+  const openBtn = document.getElementById('openBtn');
+  const opening = document.getElementById('opening');
+
+  openBtn.addEventListener('click', () => {
+    opening.style.transition = 'opacity .8s ease';
+    opening.style.opacity = 0;
+
+    setTimeout(() => {
+      opening.style.display = 'none';
+      AOS.init({ once: true });
+    }, 800);
+  });
+</script>
+
+<script>
+AOS.init({ once: true });
+
+const API_URL = 'https://script.google.com/macros/s/AKfycbyYuzf684k7xc1eTrtmKjqivEhgf96WHQY3AsbahC_kiQXilVJkPthr3_1cxYhmCgcDzQ/exec';
+
+
+function showLoading() {
+  document.getElementById('pageLoading').style.display = 'flex';
+}
+
+function hideLoading() {
+  document.getElementById('pageLoading').style.display = 'none';
+}
+
+function showLoadingOverlay() {
+  document.getElementById('loadingOverlay').style.display = 'flex';
+}
+
+function hideLoadingOverlay() {
+  document.getElementById('loadingOverlay').style.display = 'none';
+}
+
+function openInvite(data) {
+  document.querySelector('.hero').style.display = 'none';
+  document.getElementById('invite').style.display = 'block';
+
+  if (data.found) {
+    document.getElementById('rsvp').style.display = 'block';
+    document.getElementById('guestName').value = data.guest.name;
+  }
+}
+
+// AUTO CHECK URL
+(function autoCheckGuest() {
+  const params = new URLSearchParams(window.location.search);
+  const guest = params.get('guest');
+
+  if (!guest) return;
+
+  fetch(`${API_URL}?guest=${guest}`)
+    .then(res => res.json())
+    .then(data => {
+      openInvite(data);
+
+      // nếu có #rsvp thì scroll
+      if (window.location.hash === '#rsvp') {
+        setTimeout(() => {
+          document.getElementById('rsvp')?.scrollIntoView({ behavior: 'smooth' });
+        }, 600);
+      }
+    });
+})();
+
+function checkGuest() {
+
+  showLoading();
+  const q = document.getElementById('guestInput').value.trim();
+  if (!q) return alert('Vui lòng nhập tên hoặc số điện thoại');
+
+  fetch(`${API_URL}?q=${encodeURIComponent(q)}`)
+    .then(res => res.json())
+    .then(data => {
+      if (!data.found) {
+        alert('Không tìm thấy thông tin khách mời');
+        return;
+      }
+
+      // set tên khách
+      document.getElementById('guestDisplay').innerText =
+        `Anh/Chị ${data.guest.name}`;
+      document.getElementById('guestName').value = data.guest.name;
+
+      // mở phong bì
+      const envelope = document.querySelector('.envelope');
+      const invite = document.querySelector('.invitation');
+
+      envelope.classList.add('opened');
+
+      setTimeout(() => {
+        envelope.style.display = 'none';
+        invite.style.display = 'block';
+        invite.classList.add('show');
+
+        // scroll nhẹ như mở thiệp
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 1000);
+      hideLoading();
+
+      // hiện form RSVP
+      document.getElementById('rsvp').style.display = 'block';
+    });
+}
+
+// Submit RSVP
+const form = document.getElementById('rsvpForm');
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  showLoadingOverlay();
+
+  fetch(API_URL, {
+    method: 'POST',
+    body: new FormData(form)
+  })
+  .then(res => res.text())
+  .then(() => {
+    hideLoadingOverlay();
+    alert('Cảm ơn bạn đã xác nhận tham dự 💖');
+    form.reset();
+  })
+  .catch(() => {
+    hideLoadingOverlay();
+    alert('Có lỗi xảy ra, vui lòng thử lại');
+  });
+});
+
+</script>
+<div id="lightbox">
+  <span class="close">&times;</span>
+  <img id="lightboxImg">
+</div>
+<script>
+  document.querySelectorAll('.gallery-album img').forEach(img => {
+  img.addEventListener('click', () => {
+    document.getElementById('lightboxImg').src = img.src;
+    document.getElementById('lightbox').style.display = 'flex';
+  });
+});
+
+document.querySelector('#lightbox .close').onclick = () => {
+  document.getElementById('lightbox').style.display = 'none';
+};
+
+const albumImages = document.querySelectorAll('.album-img');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, {
+  threshold: 0.3
+});
+
+albumImages.forEach(img => observer.observe(img));
+
+document.getElementById('openBtn').addEventListener('click', () => {
+  const guestId = getParam('id');
+
+  // Animation mở phong bì
+  const envelope = document.querySelector('.envelope');
+  const invite = document.querySelector('.invitation');
+
+  envelope.classList.add('opened');
+
+  setTimeout(() => {
+    envelope.style.display = 'none';
+    invite.style.display = 'block';
+    invite.classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 900);
+
+  // 👉 Nếu có ID thì mới fetch
+  if (guestId) {
+    showLoading();
+
+    fetch(`${API_URL}?id=${encodeURIComponent(guestId)}`)
+      .then(res => res.json())
+      .then(data => {
+        hideLoading();
+
+        if (data.found) {
+          document.getElementById('guestDisplay').innerText =
+            `Anh/Chị ${data.guest.name}`;
+
+          document.getElementById('guestName').value = data.guest.name;
+          document.getElementById('rsvp').style.display = 'block';
+        } else {
+          document.getElementById('rsvp').style.display = 'none';
+        }
+      });
+  }
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  const guestId = getParam('id');
+  if (guestId) {
+    document.getElementById('searchBox').style.display = 'none';
+  }
+});
+</script>
+</body>
+</html>

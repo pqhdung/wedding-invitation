@@ -1,3 +1,50 @@
+/* =====================
+   LOCAL FONTS
+===================== */
+
+/* Allura */
+@font-face {
+  font-family: 'Allura';
+  src: url('../fonts/Allura/allura-v23-latin_vietnamese-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Great Vibes */
+@font-face {
+  font-family: 'Great Vibes';
+  src: url('../fonts/Great_Vibes/great-vibes-v21-latin_vietnamese-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cormorant Garamond */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/cormorant-garamond-v21-latin_vietnamese/cormorant-garamond-v21-latin_vietnamese-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/cormorant-garamond-v21-latin_vietnamese/cormorant-garamond-v21-latin_vietnamese-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/cormorant-garamond-v21-latin_vietnamese/cormorant-garamond-v21-latin_vietnamese-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 html, body {
   max-width: 100%;
   overflow-x: hidden;

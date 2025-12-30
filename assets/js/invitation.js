@@ -10,6 +10,24 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+document.getElementById('enterInvite')?.addEventListener('click', () => {
+  const overlay = document.getElementById('welcomeOverlay');
+
+  overlay.classList.remove('show');
+
+  // autoplay hợp lệ mobile
+  music.play().then(() => {
+    isPlaying = true;
+    musicBtn.classList.add('playing');
+    musicBtn.classList.remove('paused');
+  });
+
+  // refresh animation
+  setTimeout(() => {
+    AOS.refreshHard();
+  }, 500);
+});
+
 const API_URL =
   'https://script.google.com/macros/s/AKfycbyYuzf684k7xc1eTrtmKjqivEhgf96WHQY3AsbahC_kiQXilVJkPthr3_1cxYhmCgcDzQ/exec';
 
@@ -48,6 +66,10 @@ function openInvite(guest) {
 
   $('guestDisplay').innerText = guest.name;
   $('guestName').value = guest.name;
+
+  setTimeout(() => {
+    document.getElementById('welcomeOverlay')?.classList.add('show');
+  }, 300);
 
   setTimeout(() => {
     AOS.refresh(); // hoặc AOS.refresh()

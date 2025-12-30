@@ -125,15 +125,74 @@ form?.addEventListener('submit', e => {
 /* =====================
    Gallery lightbox
 ===================== */
-document.querySelectorAll('.gallery-album img').forEach(img => {
-  img.addEventListener('click', () => {
-    $('lightboxImg').src = img.src;
-    show($('lightbox'));
-  });
-});
+// function openLightbox(src) {
+//   document.body.classList.add('lightbox-open');
+//   const lb = document.getElementById('lightbox');
+//   document.getElementById('lightboxImg').src = src;
+//   lb.classList.add('show');
+// }
 
-document.querySelector('#lightbox .close')
-  ?.addEventListener('click', () => hide($('lightbox')));
+// function closeLightbox() {
+//   document.body.classList.remove('lightbox-open');
+//   document.getElementById('lightbox').classList.remove('show');
+// }
+
+// document.querySelectorAll('.gallery-album img').forEach(img => {
+//   img.addEventListener('click', () => {
+//     $('lightboxImg').src = img.src;
+//     // show($('lightbox'));
+//     $('lightbox').classList.add('show');
+//   });
+// });
+
+// document.querySelector('#lightbox .close')
+//   ?.addEventListener('click', () => {
+//     $('lightbox').classList.remove('show');
+//   }
+// );
+
+function initLightbox() {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+
+  // Click ảnh trong gallery → mở lightbox
+  document.querySelectorAll('.gallery-album img').forEach(img => {
+    img.addEventListener('click', () => {
+      openLightbox(img.src);
+    });
+  });
+
+  // Click nền tối → đóng
+  lightbox.addEventListener('click', (e) => {
+    // nếu click KHÔNG phải ảnh thì đóng
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  // Click nút X → đóng
+  lightbox.querySelector('.close')?.addEventListener('click', closeLightbox);
+}
+
+function openLightbox(src) {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+
+  lightboxImg.src = src;
+  lightbox.classList.add('show');
+  document.body.style.overflow = 'hidden'; // khóa scroll mobile
+}
+
+function closeLightbox() {
+  const lightbox = document.getElementById('lightbox');
+
+  lightbox.classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initLightbox();
+});
 
 /* =====================
    Scroll reveal

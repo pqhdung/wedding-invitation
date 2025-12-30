@@ -15,14 +15,17 @@ document.getElementById('enterInvite')?.addEventListener('click', () => {
 
   overlay.classList.remove('show');
 
-  // autoplay hợp lệ mobile
+  // ⬇️ QUAN TRỌNG: Ẩn hẳn sau animation
+  setTimeout(() => {
+    overlay.style.display = 'none';
+  }, 600); // = thời gian transition CSS
+
   music.play().then(() => {
     isPlaying = true;
     musicBtn.classList.add('playing');
     musicBtn.classList.remove('paused');
   });
 
-  // refresh animation
   setTimeout(() => {
     AOS.refreshHard();
   }, 500);

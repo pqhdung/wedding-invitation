@@ -819,6 +819,9 @@ footer {
   opacity: 1;
   pointer-events: auto;
 }
+.welcome-overlay:not(.show) {
+  pointer-events: none;
+}
 
 .welcome-box {
   text-align: center;

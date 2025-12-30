@@ -2,7 +2,12 @@
    Init
 ===================== */
 document.addEventListener('DOMContentLoaded', () => {
-  AOS.init({ once: true });
+  AOS.init({ 
+    once: true,
+    duration: 1200,   // ⏱️ thời gian chạy (ms)
+    easing: 'ease-in-out',
+    offset: 120       
+  });
 });
 
 const API_URL =
@@ -43,6 +48,10 @@ function openInvite(guest) {
 
   $('guestDisplay').innerText = guest.name;
   $('guestName').value = guest.name;
+
+  setTimeout(() => {
+    AOS.refresh(); // hoặc AOS.refresh()
+  }, 50);
 
   tryAutoPlayMusic();
   requestAnimationFrame(() => {

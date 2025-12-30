@@ -1,3 +1,8 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
     /* font-family: 'Playfair Display', serif;
     background: #fafafa;
@@ -465,12 +470,6 @@ footer {
     object-fit: cover;
 }
 
-/* body.lightbox-open {
-    padding: 0 !important;
-    margin: 0 !important;
-    overflow: hidden;
-} */
-
 #lightbox {
     position: fixed;
     inset: 0;
@@ -749,14 +748,21 @@ footer {
         bottom: -50px;
     }
     body {
-    /* padding: 10px 0; */
+        padding: 10px 0;
     }
     .couple-name {
         font-size: 2.0rem;
     }
 
     .invite-box {
-    padding: 50px 20px;
+        padding: 50px 20px;
+    }
+    .floral.gallery.left {
+        left: -120px;   /* đẩy sâu hơn nhưng không tạo scroll */
+    }
+
+    .floral.gallery.right {
+        right: -120px;
     }
 }
 
@@ -777,6 +783,14 @@ footer {
     bottom: -20px;
     right: -20px;
     animation: floatUp 6s ease-in-out infinite;
+  }
+
+  .floral.gallery.left {
+    left: -120px;   /* đẩy sâu hơn nhưng không tạo scroll */
+  }
+
+  .floral.gallery.right {
+    right: -120px;
   }
 }
 
@@ -802,6 +816,13 @@ footer {
 
     .time-box span {
         font-size: 24px;
+    }
+    .floral.gallery.left {
+        left: -120px;   /* đẩy sâu hơn nhưng không tạo scroll */
+    }
+
+    .floral.gallery.right {
+        right: -120px;
     }
 }
 

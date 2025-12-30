@@ -1,0 +1,105 @@
+/* ================= OPENING ENVELOPE ================= */
+
+.envelope-opening {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.envelope-wrapper {
+  position: relative;
+  width: 320px;
+  height: 220px;
+  cursor: pointer;
+  perspective: 1200px;
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #f6f1ec;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+/* PAPER = ẢNH COUPLE */
+.envelope-paper {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  width: 85%;
+  height: 90%;
+  transform: translateX(-50%);
+  background: #fff;
+  border-radius: 8px;
+  z-index: 2;
+  overflow: hidden;
+  transition: transform 1.2s ease;
+}
+
+.couple-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* TRIANGLES */
+.envelope-left,
+.envelope-right,
+.envelope-bottom,
+.envelope-flap {
+  position: absolute;
+  inset: 0;
+  background: #efe5da;
+  z-index: 3;
+}
+
+.envelope-left {
+  clip-path: polygon(0 0, 50% 50%, 0 100%);
+}
+
+.envelope-right {
+  clip-path: polygon(100% 0, 50% 50%, 100% 100%);
+}
+
+.envelope-bottom {
+  clip-path: polygon(0 100%, 50% 50%, 100% 100%);
+}
+
+.envelope-flap {
+  clip-path: polygon(0 0, 50% 50%, 100% 0);
+  transform-origin: top;
+  transition: transform 1.1s ease;
+  z-index: 5;
+}
+
+/* WAX */
+.wax-seal {
+  position: absolute;
+  width: 80px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -40%);
+  z-index: 6;
+  transition: opacity .4s ease;
+}
+
+.tap-text {
+  margin-top: 16px;
+  font-size: 14px;
+  opacity: .8;
+}
+
+/* OPEN STATE */
+.envelope-wrapper.opened .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.envelope-wrapper.opened .wax-seal {
+  opacity: 0;
+}
+
+.envelope-wrapper.opened .envelope-paper {
+  transform: translateX(-50%) translateY(-140%);
+  z-index: 10;
+}

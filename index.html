@@ -66,17 +66,24 @@
     <!-- PAGE 2 -->
     <section id="invite" class="section invitation" style="display:none">
       <div class="container">
+        <!-- ẢNH CƯỚI CHÍNH -->
+        <div class="main-photo mt-5" data-aos="zoom-in" data-aos-delay="900">
+          <img src="assets/images/couple.jpg" alt="Wedding Photo" />
+        </div>
         <div class="invite-box text-center" data-aos="fade-up">
 
-          <p class="text-uppercase small" data-aos="fade-up">Trân trọng kính mời</p>
-
+          <p class="text-uppercase small" data-aos="fade-up">Thân mời</p>
           <!-- TÊN KHÁCH -->
-          <h3 id="guestDisplay" class="mt-2 mb-4" style="font-weight:600" data-aos="fade-up" data-aos-delay="200"></h3>
+          <h3 id="guestDisplay" class="mt-2" style="font-weight:600" data-aos="fade-up" data-aos-delay="200"></h3>
+          <p id="guestDisplayContent" class="mt-2  mb-4 small" data-aos="fade-up" data-aos-delay="600">Tham dự tiệc cưới cùng chúng tôi</p>
 
           <!-- TÊN CÔ DÂU CHÚ RỂ -->
-          <h1 class="couple-name" data-aos="fade-up" data-aos-delay="300">Phương Phương</h1>
+          <p class="small wife" data-aos="fade-up">Cô dâu</p>
+          <h1 class="couple-name wife" data-aos="fade-up" data-aos-delay="300">Phương Phương</h1>
           <div class="ampersand" data-aos="fade-up" data-aos-delay="350">&</div>
-          <h1 class="couple-name" ata-aos="fade-up" data-aos-delay="400">Hoàng Dũng</h1>
+          <h1 class="couple-name husband" ata-aos="fade-up" data-aos-delay="400">Hoàng Dũng</h1>
+          <p class="small husband" data-aos="fade-up">Chú rể</p>
+
 
           <div class="divider" data-aos="fade-up" data-aos-delay="500"></div>
 
@@ -84,18 +91,22 @@
           <h4 class="date" data-aos="fade-up" data-aos-delay="700">17:00 · Thứ Bảy · 24.01.2026</h4>
 
           <p class="location mt-4">
-            <strong>SUNRISE PALACE</strong><br />
+            <strong class="location-name">SUNRISE PALACE</strong><br />
             283 Ngô Gia Tự, Phan Rang, Khánh Hòa
           </p>
-
-          <!-- ẢNH CƯỚI CHÍNH -->
-          <!-- <div class="main-photo mt-5" data-aos="zoom-in" data-aos-delay="900">
-            <img src="assets/images/couple.jpg" alt="Wedding Photo" />
-          </div> -->
-
         </div>
       </div>
     </section>
+
+    <div class="wedding-quote" data-aos="fade-up">
+      <p>
+        Mọi thứ bắt đầu như một hệ thống mới khởi tạo. Qua từng lần “debug” cảm xúc, đồng bộ kỳ vọng và tối ưu sự thấu hiểu,<br>
+        sau nhiều vòng kiểm thử bằng yêu thương và kiên nhẫn.<br>
+        Hôm nay, chúng tôi chính thức deploy một phiên bản mới mang tên Gia đình.<br>
+        Chúng mình hi vọng sự có mặt của bạn sẽ là lời chứng kiến quý giá cho ngày hệ thống hạnh phúc này được go-live.
+      </p>
+      <span>— моя жена —</span>
+    </div>
 
     <!-- GALLERY -->
     <section class="section gallery-album">
@@ -111,15 +122,6 @@
           <img src="assets/images/portrait-1.jpg" class="album-left album-img" data-aos="fade-up">
           <img src="assets/images/portrait-2.jpg" class="album-right album-img" data-aos="fade-up" data-aos-delay="150">
         </div>
-
-        <div class="wedding-quote" data-aos="fade-up">
-          <p>
-            “Tình yêu không phải là nhìn nhau,<br>
-            mà là cùng nhau nhìn về một hướng.”
-          </p>
-          <span>— Antoine de Saint-Exupéry —</span>
-        </div>
-
         <!-- Ảnh ngang nhỏ -->
         <div class="album-row" data-aos="fade-up" data-aos-delay="300">
           <img src="assets/images/landscape-2.jpg" class="album-wide album-img">
@@ -284,7 +286,7 @@ function checkGuest() {
 
       // set tên khách
       document.getElementById('guestDisplay').innerText =
-        `Anh/Chị ${data.guest.name}`;
+        `${data.guest.name}`;
       document.getElementById('guestName').value = data.guest.name;
 
       // mở phong bì
@@ -389,7 +391,7 @@ document.getElementById('openBtn').addEventListener('click', () => {
 
         if (data.found) {
           document.getElementById('guestDisplay').innerText =
-            `Anh/Chị ${data.guest.name}`;
+            `${data.guest.name}`;
 
           document.getElementById('guestName').value = data.guest.name;
           document.getElementById('rsvp').style.display = 'block';

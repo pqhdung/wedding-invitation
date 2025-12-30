@@ -1,0 +1,186 @@
+/* =====================
+   Init
+===================== */
+document.addEventListener('DOMContentLoaded', () => {
+  AOS.init({ once: true });
+});
+
+const API_URL =
+  'https://script.google.com/macros/s/AKfycbyYuzf684k7xc1eTrtmKjqivEhgf96WHQY3AsbahC_kiQXilVJkPthr3_1cxYhmCgcDzQ/exec';
+
+/* =====================
+   Helpers
+===================== */
+const $ = id => document.getElementById(id);
+
+const show = el => el && (el.style.display = 'block');
+const hide = el => el && (el.style.display = 'none');
+
+const showLoading = () => show($('pageLoading'));
+const hideLoading = () => hide($('pageLoading'));
+
+const showLoadingOverlay = () => show($('loadingOverlay'));
+const hideLoadingOverlay = () => hide($('loadingOverlay'));
+
+/* =====================
+   Open invitation
+===================== */
+function openInvite(guest) {
+  if (!guest || !guest.name) return;
+
+  const hero = document.querySelector('.hero');
+  const searchBox = $('searchBox');
+  const invite = $('invite');
+  const rsvp = $('rsvp');
+
+  hide(hero);
+  hide(searchBox);
+
+  show(invite);
+  invite.classList.add('show'); // 🔥 DÒNG QUAN TRỌNG
+
+  show(rsvp);
+
+  $('guestDisplay').innerText = guest.name;
+  $('guestName').value = guest.name;
+
+  requestAnimationFrame(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+/* =====================
+   Auto load guest
+===================== */
+function autoLoadGuest() {
+  const cached = sessionStorage.getItem('guestData');
+  if (!cached) return;
+
+  try {
+    const guest = JSON.parse(cached);
+    openInvite(guest);
+  } catch {
+    sessionStorage.removeItem('guestData');
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  autoLoadGuest();
+});
+
+/* =====================
+   Manual check guest
+===================== */
+window.checkGuest = function () {
+  const q = $('guestInput')?.value.trim();
+  if (!q) {
+    alert('Vui lòng nhập tên hoặc số điện thoại');
+    return;
+  }
+
+  showLoading();
+
+  fetch(`${API_URL}?guest=${encodeURIComponent(q)}`)
+    .then(res => res.json())
+    .then(data => {
+      hideLoading();
+
+      if (!data?.found) {
+        alert('Không tìm thấy thông tin khách mời');
+        return;
+      }
+
+      sessionStorage.setItem('guestData', JSON.stringify(data.guest));
+      openInvite(data.guest);
+    })
+    .catch(() => {
+      hideLoading();
+      alert('Có lỗi xảy ra, vui lòng thử lại');
+    });
+};
+
+/* =====================
+   RSVP submit
+===================== */
+const form = $('rsvpForm');
+form?.addEventListener('submit', e => {
+  e.preventDefault();
+
+  showLoadingOverlay();
+
+  fetch(API_URL, {
+    method: 'POST',
+    body: new FormData(form)
+  })
+    .then(() => {
+      hideLoadingOverlay();
+      alert('Cảm ơn bạn đã gửi lời chúc 💖');
+      form.reset();
+    })
+    .catch(() => {
+      hideLoadingOverlay();
+      alert('Gửi thất bại, vui lòng thử lại');
+    });
+});
+
+/* =====================
+   Gallery lightbox
+===================== */
+document.querySelectorAll('.gallery-album img').forEach(img => {
+  img.addEventListener('click', () => {
+    $('lightboxImg').src = img.src;
+    show($('lightbox'));
+  });
+});
+
+document.querySelector('#lightbox .close')
+  ?.addEventListener('click', () => hide($('lightbox')));
+
+/* =====================
+   Scroll reveal
+===================== */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => e.isIntersecting && e.target.classList.add('show'));
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.album-img')
+  .forEach(img => observer.observe(img));
+
+/* =====================
+   COUNTDOWN TIMER
+===================== */
+(function initCountdown() {
+  const targetDate = new Date('2026-01-24T17:00:00+07:00').getTime();
+
+  const daysEl = document.getElementById('cd-days');
+  const hoursEl = document.getElementById('cd-hours');
+  const minutesEl = document.getElementById('cd-minutes');
+  const secondsEl = document.getElementById('cd-seconds');
+
+  if (!daysEl) return;
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+      daysEl.innerText = '00';
+      hoursEl.innerText = '00';
+      minutesEl.innerText = '00';
+      secondsEl.innerText = '00';
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    daysEl.innerText = String(days).padStart(2, '0');
+    hoursEl.innerText = String(hours).padStart(2, '0');
+    minutesEl.innerText = String(minutes).padStart(2, '0');
+    secondsEl.innerText = String(seconds).padStart(2, '0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+})();

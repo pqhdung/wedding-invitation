@@ -1,0 +1,65 @@
+const API_URL = 'https://script.google.com/macros/s/AKfycbyYuzf684k7xc1eTrtmKjqivEhgf96WHQY3AsbahC_kiQXilVJkPthr3_1cxYhmCgcDzQ/exec';
+
+function getParam(name) {
+  return new URLSearchParams(window.location.search).get(name);
+}
+
+const openBtn = document.getElementById('openBtn');
+
+/* =====================
+   UI helpers
+===================== */
+function enableOpenBtn() {
+  openBtn.disabled = false;
+  openBtn.innerText = 'Mở thiệp';
+}
+
+/* =====================
+   Auto load guest (OPENING)
+===================== */
+(async function autoLoadGuest() {
+  try {
+    // 1️⃣ Ưu tiên sessionStorage
+    const cached = sessionStorage.getItem('guestData');
+    if (cached) {
+      enableOpenBtn();
+      return;
+    }
+
+    // 2️⃣ Fallback URL
+    const id = getParam('id');
+    const guest = getParam('guest');
+
+    if (!id && !guest) {
+      enableOpenBtn(); // cho phép mở thiệp trống
+      return;
+    }
+
+    const res = await fetch(
+      `${API_URL}?${id ? 'id=' + encodeURIComponent(id) : 'guest=' + encodeURIComponent(guest)}`
+    );
+
+    const data = await res.json();
+
+    if (data?.found && data.guest) {
+      sessionStorage.setItem('guestData', JSON.stringify(data.guest));
+    }
+
+    enableOpenBtn();
+
+  } catch (err) {
+    console.error('Opening load failed', err);
+    enableOpenBtn();
+  }
+})();
+
+openBtn.addEventListener('click', () => {
+  const opening = document.getElementById('opening');
+
+  opening.style.transition = 'opacity .8s ease';
+  opening.style.opacity = 0;
+
+  setTimeout(() => {
+    window.location.href = 'invitation.html' + window.location.search;
+  }, 800);
+});

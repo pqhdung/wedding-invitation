@@ -471,6 +471,14 @@ footer {
     box-shadow: 0 10px 25px rgba(0,0,0,.15);
 }
 
+.gallery-album h4 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    text-align: left;
+    color: #c6a87d;
+}
+
 .gallery img.portrait {
     aspect-ratio: 3 / 4;
     object-fit: cover;
@@ -479,11 +487,6 @@ footer {
 .gallery img.landscape {
     aspect-ratio: 16 / 9;
     object-fit: cover;
-}
-
-
-.gallery-album {
-    padding: 80px 0;
 }
 
 .album-row {
@@ -548,11 +551,6 @@ footer {
     cursor: pointer;
 }
 
-.gallery-album {
-  position: relative;
-  padding: 80px 0;
-}
-
 .album-img {
     opacity: 0;
     transform: translateY(40px) scale(0.96);
@@ -566,7 +564,7 @@ footer {
 
 .wedding-quote {
     text-align: center;
-    padding: 70px 20px;
+    padding: 40px 20px;
     font-family: 'Playfair Display', serif;
 }
 
@@ -751,6 +749,7 @@ footer {
 
 .gallery-album {
   position: relative;
+  padding: 10px 0;
 }
 
 /* RSVP FLORAL */

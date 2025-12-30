@@ -12,7 +12,7 @@ const privateMsg = document.getElementById('privateMsg');
 ===================== */
 function enableOpenBtn() {
   openBtn.disabled = false;
-  openBtn.innerText = 'Mở thiệp';
+  openBtn.innerText = 'Cùng chúng tôi bước vào lễ đường nhé!';
 }
 
 function showPrivateMessage() {

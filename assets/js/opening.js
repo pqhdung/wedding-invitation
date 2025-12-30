@@ -5,6 +5,7 @@ function getParam(name) {
 }
 
 const openBtn = document.getElementById('openBtn');
+const privateMsg = document.getElementById('privateMsg');
 
 /* =====================
    UI helpers
@@ -14,27 +15,33 @@ function enableOpenBtn() {
   openBtn.innerText = 'Mở thiệp';
 }
 
+function showPrivateMessage() {
+  openBtn.style.display = 'none';
+  privateMsg.style.display = 'block';
+}
+
 /* =====================
    Auto load guest (OPENING)
 ===================== */
 (async function autoLoadGuest() {
   try {
-    // 1️⃣ Ưu tiên sessionStorage
+    // 1️⃣ Có cache → hợp lệ
     const cached = sessionStorage.getItem('guestData');
     if (cached) {
       enableOpenBtn();
       return;
     }
 
-    // 2️⃣ Fallback URL
+    // 2️⃣ Bắt buộc phải có param
     const id = getParam('id');
     const guest = getParam('guest');
 
     if (!id && !guest) {
-      enableOpenBtn(); // cho phép mở thiệp trống
+      showPrivateMessage();
       return;
     }
 
+    // 3️⃣ Gọi API check hợp lệ
     const res = await fetch(
       `${API_URL}?${id ? 'id=' + encodeURIComponent(id) : 'guest=' + encodeURIComponent(guest)}`
     );
@@ -43,13 +50,14 @@ function enableOpenBtn() {
 
     if (data?.found && data.guest) {
       sessionStorage.setItem('guestData', JSON.stringify(data.guest));
+      enableOpenBtn();
+    } else {
+      showPrivateMessage();
     }
-
-    enableOpenBtn();
 
   } catch (err) {
     console.error('Opening load failed', err);
-    enableOpenBtn();
+    showPrivateMessage();
   }
 })();
 

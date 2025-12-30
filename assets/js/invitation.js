@@ -65,7 +65,9 @@ function openInvite(guest) {
   show(rsvp);
 
   $('guestDisplay').innerText = guest.name;
-  $('guestName').value = guest.name;
+  $('guestName').value = guest.title + " " + guest.name;
+  $('guestTitle').innerText = 'Thân mời ' + guest.title;
+
 
   setTimeout(() => {
     document.getElementById('welcomeOverlay')?.classList.add('show');

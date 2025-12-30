@@ -2,12 +2,12 @@
    Init
 ===================== */
 document.addEventListener('DOMContentLoaded', () => {
-  AOS.init({ 
-    once: true,
-    duration: 1200,   // ⏱️ thời gian chạy (ms)
-    easing: 'ease-in-out',
-    offset: 120       
-  });
+  // AOS.init({ 
+  //   once: true,
+  //   duration: 1200,   // ⏱️ thời gian chạy (ms)
+  //   easing: 'ease-in-out',
+  //   offset: 120       
+  // });
 });
 
 document.getElementById('enterInvite')?.addEventListener('click', () => {
@@ -18,7 +18,7 @@ document.getElementById('enterInvite')?.addEventListener('click', () => {
   // ⬇️ QUAN TRỌNG: Ẩn hẳn sau animation
   setTimeout(() => {
     overlay.style.display = 'none';
-  }, 600); // = thời gian transition CSS
+  }, 800); // = thời gian transition CSS
 
   music.play().then(() => {
     isPlaying = true;
@@ -27,8 +27,15 @@ document.getElementById('enterInvite')?.addEventListener('click', () => {
   });
 
   setTimeout(() => {
+    AOS.init({ 
+      once: true,
+      duration: 1200,   // ⏱️ thời gian chạy (ms)
+      easing: 'ease-in-out',
+      offset: 120       
+    });
+
     AOS.refreshHard();
-  }, 500);
+  }, 900);
 });
 
 const API_URL =
@@ -78,19 +85,11 @@ const hideLoadingOverlay = () => hide($('loadingOverlay'));
 function openInvite(guest) {
   if (!guest || !guest.name) return;
 
-  const hero = document.querySelector('.hero');
-  const searchBox = $('searchBox');
   const invite = $('invite');
   const rsvp = $('rsvp');
-
-  hide(hero);
-  hide(searchBox);
-
   show(invite);
-  invite.classList.add('show'); // 🔥 DÒNG QUAN TRỌNG
-
+  invite.classList.add('show');
   show(rsvp);
-
   $('guestDisplay').innerText = guest.name;
   $('guestName').value = guest.title + " " + guest.name;
   $('guestTitle').innerText = 'Thân mời ' + guest.title;
@@ -100,9 +99,9 @@ function openInvite(guest) {
     document.getElementById('welcomeOverlay')?.classList.add('show');
   }, 300);
 
-  setTimeout(() => {
-    AOS.refresh(); // hoặc AOS.refresh()
-  }, 50);
+  // setTimeout(() => {
+  //   AOS.refresh();
+  // }, 50);
 
   tryAutoPlayMusic();
   requestAnimationFrame(() => {

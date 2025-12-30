@@ -267,13 +267,15 @@ footer {
 
 .invitation {
     opacity: 0;
-    transform: translateY(40px);
-    transition: all 1.2s ease;
+    position: relative;
+    z-index: 1;
+    /* transform: translateY(40px); */
+    /* transition: all 1.2s ease; */
 }
 
 .invitation.show {
     opacity: 1;
-    transform: translateY(0);
+    /* transform: translateY(0); */
 }
 
 .rsvp {
@@ -721,11 +723,6 @@ footer {
   bottom: -60px;
   left: 50%;
   transform: translateX(-50%) rotate(180deg);
-}
-
-.invitation {
-  position: relative;
-  z-index: 1;
 }
 
 /* GALLERY FLORAL */

@@ -37,6 +37,30 @@ const API_URL =
 /* =====================
    Helpers
 ===================== */
+
+/* =====================
+   Guard invitation page
+===================== */
+(function guardInvitationPage() {
+  const cached = sessionStorage.getItem('guestData');
+
+  if (!cached) {
+    window.location.replace('index.html');
+    return;
+  }
+
+  try {
+    const guest = JSON.parse(cached);
+    if (!guest?.name) {
+      sessionStorage.removeItem('guestData');
+      window.location.replace('index.html');
+    }
+  } catch {
+    sessionStorage.removeItem('guestData');
+    window.location.replace('index.html');
+  }
+})();
+
 const $ = id => document.getElementById(id);
 
 const show = el => el && (el.style.display = 'block');

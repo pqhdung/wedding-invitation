@@ -44,6 +44,7 @@ function openInvite(guest) {
   $('guestDisplay').innerText = guest.name;
   $('guestName').value = guest.name;
 
+  tryAutoPlayMusic();
   requestAnimationFrame(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
@@ -243,3 +244,38 @@ document.querySelectorAll('.album-img')
   updateCountdown();
   setInterval(updateCountdown, 1000);
 })();
+
+/* =====================
+   BACKGROUND MUSIC
+===================== */
+const music = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicControl');
+
+let isPlaying = false;
+
+// click icon để bật / tắt
+musicBtn.addEventListener('click', () => {
+  if (!isPlaying) {
+    music.play().then(() => {
+      isPlaying = true;
+      musicBtn.classList.remove('paused');
+      musicBtn.classList.add('playing');
+    }).catch(() => {
+      // iOS cần user interaction → click lại OK
+    });
+  } else {
+    music.pause();
+    isPlaying = false;
+    musicBtn.classList.remove('playing');
+    musicBtn.classList.add('paused');
+  }
+});
+
+// OPTIONAL: tự bật nhạc khi mở thiệp thành công
+function tryAutoPlayMusic() {
+  music.play().then(() => {
+    isPlaying = true;
+    musicBtn.classList.remove('paused');
+    musicBtn.classList.add('playing');
+  }).catch(() => {});
+}

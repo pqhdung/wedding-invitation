@@ -45,6 +45,16 @@
   font-display: swap;
 }
 
+[data-aos] {
+  pointer-events: none;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+[data-aos].aos-animate {
+  pointer-events: auto;
+}
+
 html, body {
   max-width: 100%;
   overflow-x: hidden;

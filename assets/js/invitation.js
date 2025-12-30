@@ -29,7 +29,7 @@ document.getElementById('enterInvite')?.addEventListener('click', () => {
   setTimeout(() => {
     AOS.init({ 
       once: true,
-      duration: 1200,   // ⏱️ thời gian chạy (ms)
+      duration: 800,   // ⏱️ thời gian chạy (ms)
       easing: 'ease-in-out',
       offset: 120       
     });

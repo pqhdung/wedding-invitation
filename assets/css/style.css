@@ -233,7 +233,7 @@ footer {
   letter-spacing: .5px;
   /* margin-bottom: 40px; */
   position: relative;
-  display: inline-block;
+  display: block;
 }
 
 /* #guestDisplay::after {
@@ -245,12 +245,11 @@ footer {
   margin: 18px auto 0;
 } */
 #guestDisplayContent {
-  display: inline-block;
+  display: block;
   letter-spacing: .5px;
   font-size: 1rem;
   margin-bottom: 40px;
   position: relative;
-  display: inline-block;
 }
 
 #guestDisplayContent::after  {

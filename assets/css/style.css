@@ -45,7 +45,7 @@
   font-display: swap;
 }
 
-[data-aos] {
+/* [data-aos] {
   pointer-events: none;
   backface-visibility: hidden;
   transform: translateZ(0);
@@ -55,6 +55,14 @@
 
 [data-aos].aos-animate {
   pointer-events: auto;
+} */
+
+[data-aos] {
+  backface-visibility: hidden;
+}
+
+[data-aos].aos-animate {
+  will-change: auto;
 }
 
 html, body {
@@ -64,11 +72,7 @@ html, body {
 }
 
 body {
-    /* font-family: 'Playfair Display', serif;
-    background: #fafafa;
-    color: #333; */
     font-family: 'Cormorant Garamond', serif;
-    /* background: #fafafa; */
     color: #2f2f2f;
     letter-spacing: 0.3px;
     background: #eae6df;
@@ -105,8 +109,6 @@ body {
 
 .hero {
     min-height: 85vh;
-    /* background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
-                url('assets/images/bg.jpg') center/cover no-repeat; */
     display: flex;
     align-items: center;
     text-align: center;
@@ -125,7 +127,6 @@ body {
 }
 
 .section {
-    /* padding: 90px 0; */
     padding: 80px 20px;
     border-bottom: 1px dashed rgba(0,0,0,.08);
 }
@@ -287,7 +288,7 @@ footer {
 #guestDisplayContent, 
 #couple-info-block,
 .invitation {
-    contain: content;
+    will-change: auto;
     -webkit-overflow-scrolling: touch; /* Ép mượt cho iOS */
     pointer-events: auto !important; /* Luôn cho phép chạm/cuộn bất kể hiệu ứng */
     touch-action: pan-y; /* Chỉ cho phép cuộn dọc, tối ưu cho mobile */
@@ -327,15 +328,12 @@ footer {
     opacity: 1 !important;
     position: relative;
     z-index: 1;
-    /* transform: translateY(40px); */
-    /* transition: all 1.2s ease; */
     transform: none !important;
     transition: none !important;
 }
 
 .invitation.show {
     opacity: 1;
-    /* transform: translateY(0); */
 }
 
 .rsvp {
@@ -514,7 +512,6 @@ footer {
 
 .loading-content {
     text-align: center;
-    animation: fadeInUp .6s ease;
 }
 
 .spinner {
@@ -611,17 +608,6 @@ footer {
     font-size: 36px;
     color: #fff;
     cursor: pointer;
-}
-
-.album-img {
-    opacity: 0;
-    transform: translateY(40px) scale(0.96);
-    transition: all 1.1s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-.album-img.show {
-    opacity: 1;
-    transform: translateY(0) scale(1);
 }
 
 .wedding-quote {

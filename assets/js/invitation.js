@@ -33,9 +33,9 @@ document.getElementById('enterInvite')?.addEventListener('click', () => {
       // easing: 'ease-in-out',
       easing: 'ease-out-quad',
       disableMutationObserver: false,
-      offset: 50 , // Kích hoạt sớm hơn một chút để tránh đợ
+      offset: 80 , // Kích hoạt sớm hơn một chút để tránh đợ
       debounceDelay: 100,     // Giảm tần suất kiểm tra sự kiện scroll
-      throttleDelay: 150      // Giúp việc cuộn trang mượt hơn     
+      throttleDelay: 200      // Giúp việc cuộn trang mượt hơn     
     });
 
     // setTimeout(() => {
@@ -260,16 +260,6 @@ function closeLightbox() {
 document.addEventListener('DOMContentLoaded', () => {
   initLightbox();
 });
-
-/* =====================
-   Scroll reveal
-===================== */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => e.isIntersecting && e.target.classList.add('show'));
-}, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-
-document.querySelectorAll('.album-img')
-  .forEach(img => observer.observe(img));
 
 /* =====================
    COUNTDOWN TIMER

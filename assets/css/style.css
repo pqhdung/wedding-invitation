@@ -232,6 +232,7 @@ footer {
     margin-top: -50px;     /* Cho hộp nội dung đè lên ảnh một chút tạo chiều sâu */
     background: #fff;
     border-radius: 20px 20px 0 0; /* Bo góc tròn phía trên */
+    padding: 50px 20px;
 }
 
 /* ornament trên & dưới */
@@ -244,14 +245,11 @@ footer {
   color: #c6a87d;
   font-size: 1.2rem;
   letter-spacing: 4px;
+  bottom: 20px;
 }
 
 .invite-box::before {
   top: 30px;
-}
-
-.invite-box::after {
-  bottom: 30px;
 }
 
 .invite-box p {

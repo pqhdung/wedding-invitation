@@ -32,7 +32,9 @@ document.getElementById('enterInvite')?.addEventListener('click', () => {
       duration: 600,   // ⏱️ thời gian chạy (ms)
       // easing: 'ease-in-out',
       easing: 'ease-out-quad',
-      offset: 120       
+      offset: 50 , // Kích hoạt sớm hơn một chút để tránh đợ
+      debounceDelay: 50,     // Giảm tần suất kiểm tra sự kiện scroll
+      throttleDelay: 99      // Giúp việc cuộn trang mượt hơn     
     });
 
     AOS.refreshHard();

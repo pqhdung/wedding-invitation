@@ -183,24 +183,53 @@ footer {
     font-size: 1.5rem;
 }
 
-.main-photo img {
+
+/* ảnh ban main màn hình ngang */
+/* .main-photo img {
     width: 100%;
     max-width: 520px;
     border-radius: 0px;
     box-shadow: 0 18px 35px rgba(0,0,0,0.2);
+} */
+
+/* Tối ưu cho ảnh bìa dọc full màn */
+.main-photo {
+    margin-left: -20px;   /* Đẩy ngược ra lề để bù cho padding của container */
+    margin-right: -20px;
+    margin-top: -80px !important; /* Đưa ảnh lên sát mép trên của section */
+    overflow: hidden;
+}
+
+.main-photo img {
+    width: 100%;
+    height: auto;
+    min-height: 80vh;      /* Đảm bảo ảnh chiếm ít nhất 80% chiều cao màn hình */
+    object-fit: cover;     /* Cắt ảnh thông minh để không bị méo */
+    display: block;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Đổ bóng nhẹ hơn cho ảnh bìa */
 }
 
 #search {
   display: none;
 }
 
-.invite-box {
+/* dùng cho hình main hình ngang */
+/* .invite-box {
   background: #fff;
   border: 1px solid rgba(0,0,0,.08);
   max-width: 720px;
   padding: 90px 20px;
   margin: auto;
   position: relative;
+} */
+
+/* dùng cho hình main hình dọc */
+.invite-box {
+    position: relative;
+    z-index: 2;
+    margin-top: -50px;     /* Cho hộp nội dung đè lên ảnh một chút tạo chiều sâu */
+    background: #fff;
+    border-radius: 20px 20px 0 0; /* Bo góc tròn phía trên */
 }
 
 /* ornament trên & dưới */

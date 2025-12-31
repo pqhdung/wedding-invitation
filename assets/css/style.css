@@ -59,7 +59,8 @@
 
 html, body {
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
 }
 
 body {
@@ -275,6 +276,23 @@ footer {
   background: #c6a87d;
   margin: 18px auto 0;
 } */
+ #guestDisplayContent, .couple-info-block {
+  opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    display: block !important;
+    overflow: visible !important;
+}
+
+#guestDisplayContent, 
+#couple-info-block,
+.invitation {
+    contain: content;
+    -webkit-overflow-scrolling: touch; /* Ép mượt cho iOS */
+    pointer-events: auto !important; /* Luôn cho phép chạm/cuộn bất kể hiệu ứng */
+    touch-action: pan-y; /* Chỉ cho phép cuộn dọc, tối ưu cho mobile */
+}
+
 #guestDisplayContent {
   display: block;
   letter-spacing: .5px;
@@ -306,11 +324,13 @@ footer {
 } */
 
 .invitation {
-    opacity: 0;
+    opacity: 1 !important;
     position: relative;
     z-index: 1;
     /* transform: translateY(40px); */
     /* transition: all 1.2s ease; */
+    transform: none !important;
+    transition: none !important;
 }
 
 .invitation.show {

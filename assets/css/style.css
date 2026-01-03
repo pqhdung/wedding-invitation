@@ -165,13 +165,20 @@ footer {
 
 .date {
     font-size: 1rem;
-    letter-spacing: 2px;
+    letter-spacing: 1px; /* Giảm nhẹ letter-spacing để tiết kiệm diện tích */
     margin-top: 14px;
     text-transform: uppercase;
+    
+    /* Ép luôn nằm trên 1 dòng */
+    white-space: nowrap; 
+    display: block;
+    width: 100%;
+    overflow: hidden;      /* Đảm bảo không làm vỡ layout nếu quá dài */
+    text-overflow: clip;
 }
 
 #date-final {
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .location {
@@ -615,7 +622,7 @@ footer {
 }
 
 .wedding-quote p {
-    font-size: 1.6rem;
+    font-size: 1.25rem;
     font-style: italic;
     color: #6d5c4d;
     line-height: 1.7;
@@ -1027,6 +1034,16 @@ footer {
 
     .floral.gallery.right {
         right: -120px;
+    }
+
+    .date {
+        /* Sử dụng đơn vị vw (viewport width) giúp font-size co giãn theo màn hình */
+        font-size: 3.5vw !important; 
+        letter-spacing: 0.5px !important;
+    }
+    
+    #date-final {
+        font-size: 6vw !important;
     }
 }
 

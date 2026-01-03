@@ -780,7 +780,7 @@ footer {
 .floral.gallery {
   position: absolute;
   width: 300px;
-  opacity: 0.3;
+  opacity: 0.03;
   pointer-events: none;
 }
 
@@ -917,6 +917,7 @@ footer {
 
 .welcome-btn {
   border: 1px solid #333;
+  color: #333;
   background: transparent;
   padding: 12px 30px;
   font-size: 14px;
@@ -924,11 +925,23 @@ footer {
   text-transform: uppercase;
   cursor: pointer;
   transition: all .4s ease;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.welcome-btn:hover {
+/* .welcome-btn:hover {
   background: #111;
   color: #fff;
+} */
+
+/* Đồng bộ Hover, Active và Focus (Dành cho cả Desktop và Mobile) */
+.welcome-btn:hover, 
+.welcome-btn:active, 
+.welcome-btn:focus {
+  background: #333 !important;
+  color: #fff !important; /* Ép chữ luôn màu trắng khi tương tác */
+  border-color: #333 !important;
+  text-decoration: none;
 }
 
 /* Mobile tuning */

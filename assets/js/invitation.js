@@ -169,6 +169,8 @@ window.checkGuest = function () {
    RSVP submit
 ===================== */
 const form = $('rsvpForm');
+const thankYouPopup = document.getElementById("thankYouPopup");
+const closeThankYou = document.getElementById("closeThankYou");
 form?.addEventListener('submit', e => {
   e.preventDefault();
 
@@ -180,7 +182,9 @@ form?.addEventListener('submit', e => {
   })
     .then(() => {
       hideLoadingOverlay();
-      alert('Cảm ơn bạn đã gửi lời chúc 💖');
+      // alert('Cảm ơn bạn đã gửi lời chúc 💖');
+      thankYouPopup.classList.add("show");
+      document.body.style.overflow = "hidden";
       form.reset();
     })
     .catch(() => {
@@ -188,6 +192,16 @@ form?.addEventListener('submit', e => {
       alert('Gửi thất bại, vui lòng thử lại');
     });
 });
+
+closeThankYou.addEventListener("click", () => {
+  thankYouPopup.classList.remove("show");
+  document.body.style.overflow = "";
+});
+
+setTimeout(() => {
+  thankYouPopup.classList.remove("show");
+  document.body.style.overflow = "";
+}, 3000);
 
 /* =====================
    Gallery lightbox
